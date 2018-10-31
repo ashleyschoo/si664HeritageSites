@@ -22,8 +22,13 @@ class AboutPageView(generic.TemplateView):
 	template_name = 'heritagesites/about.html'
 
 
+
+
+
+
+
 @method_decorator(login_required, name='dispatch')
-class CountryAreaListView(generic.ListView): #may need ListView? include region stuff?
+class CountryAreaListView(generic.ListView): 
 	model = CountryArea
 	context_object_name = 'countries'
 	template_name = 'heritagesites/country_area.html'
@@ -45,6 +50,13 @@ class CountryAreaDetailView(generic.DetailView):
 
 	def dispatch(self, *args, **kwargs):
 		return super().dispatch(*args, **kwargs)
+
+
+
+
+
+
+
 
 class HomePageView(generic.TemplateView):
 	template_name = 'heritagesites/home.html'

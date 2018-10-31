@@ -9,19 +9,19 @@
 
 	  {% include 'heritagesites\pagination.html' %}
 
-	  {% if country_area %}
+	  {% if countries %}
 	  <ul>
-	    {% for country in country_area %}
+	    {% for country in countries %}
 
 	    <!-- safe filter on for raw HTML stored in database -->
-	    <li><a href="{% url 'country_area_detail' country_area.pk %}">{{ country_area_detail.country_area_name | safe }}</a></li>
+	    <li><a href="{% url 'country_area_detail' country.pk %}">{{ country.country_area_name | safe }}</a></li>
 	    {% endfor %}
 
 	  </ul>
 	  {% else %}
 	  <p>No Countries or Areas are available to view on this planet. Please check the number and try your call again. This is a recording. **Click** </p>
 	  {% endif %}
-	  <p>page count: {{ sites.count }}</p>
+	  <p>page count: {{ countries.count }}</p>
 
 	{% else %}
 		<a href="{% url 'login' %}">Log in</a>
