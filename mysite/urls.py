@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.http import HttpResponseRedirect
 from django.urls import path, include
+from django.contrib.auth.views import LoginView, LogoutView
 # from django.views.generic import RedirectView
 
 # Use static() to add url mapping to serve static files during development (only)
@@ -27,9 +28,9 @@ urlpatterns = [
     url(r'^$', lambda r: HttpResponseRedirect('heritagesites/')),
     url(r'^admin/', admin.site.urls),
     url(r'^heritagesites/', include('heritagesites.urls')),
-    # url(r'^auth/', include('social_django.urls', namespace='social')),
-    # url(r'^login/', LoginView.as_view(), name='Login'),
-    # url(r'^logout/', LougoutView.as_view(), {next_page }) #not done yet finish this line
+    url(r'^auth/', include('social_django.urls', namespace='social')),
+    url(r'^login/', LoginView.as_view(), name='login'),
+    url(r'^logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 

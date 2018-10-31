@@ -25,7 +25,7 @@
 
       <a class="navbar-brand" href="{% url 'home' %}">SI664 Heritage Sites</a>
 
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'sites' %}">Sites</a>
         </li>
@@ -33,7 +33,12 @@
           <a class="nav-link" href="{% url 'about' %}">About</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'countries/areas' %}">countries/areas</a>
+          <a class="nav-link" href="{% url 'country_area' %}">Countries and Areas</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto"> 
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'login' %}">login</a>
         </li>
       </ul>
     </nav>
