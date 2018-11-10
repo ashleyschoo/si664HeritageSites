@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from mysite import secrets
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'heritagesites.apps.HeritagesitesConfig',
     'test_without_migrations',
     'social_django',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -75,6 +77,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
+#django-crispy-forms
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
@@ -111,8 +115,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '311968571230-9asuu70t398p7dj3hhmhublm80bcdma4.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '8Tc4E-sB1JjFc4PtBbhLwxsO'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = secrets.SOCIAL_AUTH_GOOGLE_OAUTH2_KEY
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = secrets.SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 LOGIN_URL = '/auth/login/google-oauth2/'
 # LOGIN_URL = 'login'
