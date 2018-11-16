@@ -7,11 +7,16 @@ from django.views.generic.edit import FormView, CreateView, DeleteView, UpdateVi
 from django.urls import reverse_lazy
 from django.forms import ModelForm
 from heritagesites.forms import forms
+import django_filters
+from django_filters.views import FilterView
+from django.conf.urls import url
+
 
 from .models import HeritageSite
 from .models import CountryArea
 from .forms import HeritageSiteForm
 from .models import HeritageSiteJurisdiction
+from .filters import HeritageSiteFilter
 
 
 def index(request):
@@ -156,8 +161,8 @@ class SiteUpdateView(generic.UpdateView):
 class SiteDeleteView(generic.DeleteView):
 	model = HeritageSite
 	success_message = "Heritage Site deleted successfully"
-	success_url = reverse_lazy('site')
-	context_object_name = 'site'
+	success_url = reverse_lazy('sites')
+	context_object_name = 'sites'
 	template_name = 'heritagesites/site_delete.html'
 
 	def dispatch(self, *args, **kwargs):
@@ -174,3 +179,7 @@ class SiteDeleteView(generic.DeleteView):
 		self.object.delete()
 
 		return HttpResponseRedirect(self.get_success_url())
+
+class SiteFilterView(FilterView):
+	filterset_class = HeritageSiteFilter
+	template_name = 'heritagesites/site_filter.html'

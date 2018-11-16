@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'test_without_migrations',
     'social_django',
     'crispy_forms',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
