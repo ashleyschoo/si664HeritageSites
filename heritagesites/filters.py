@@ -14,31 +14,31 @@ class HeritageSiteFilter(django_filters.FilterSet):
 	description = django_filters.CharFilter(
 		field_name='description',
 		label='Description',
-		lookup_expr='contains'
+		lookup_expr='icontains'
 
 		)
 	heritage_site_category = django_filters.ModelMultipleChoiceFilter(
-		queryset=HeritageSiteCategory.objects.all(),
+		queryset=HeritageSiteCategory.objects.all().order_by("category_name"),
 		field_name = 'heritage_site_category',
 		label='Heritage Site Category',
 		lookup_expr='exact'
 		)
 
 	region = django_filters.ModelMultipleChoiceFilter(
-		queryset=Region.objects.all(),
+		queryset=Region.objects.all().order_by("region_name"),
 		field_name = 'country_area__location__region__region_name',
 		label = 'Region',
 		)
 
 	sub_region = django_filters.ModelMultipleChoiceFilter(
-		queryset=SubRegion.objects.all(),
+		queryset=SubRegion.objects.all().order_by("sub_region_name"),
 		field_name = 'country_area__location__sub_region__sub_region_name',
 		label = 'Sub-Region',
 		lookup_expr='exact'
 		)
 
 	intermediate_region = django_filters.ModelChoiceFilter(
-		queryset=IntermediateRegion.objects.all(),
+		queryset=IntermediateRegion.objects.all().order_by("intermediate_region_name"),
 		field_name='country_area__location__intermediate_region__intermediate_region_name',
 		label = 'Intermediate Region',
 		lookup_expr='exact'

@@ -22,13 +22,13 @@
        </div>
      </header>
 
-{% if site.country_area_name %}
+{% if site.country_area_names %}
     <div class="row">
       <div class="col-sm-2">
         <p>Country/Area</p>
       </div>
       <div class="col-sm-10">
-        <p>{{ site.country_area_name }}</p>
+        <p>{{ site.country_area_names }}</p>
       </div>
     </div>
   {% endif %}
@@ -39,30 +39,30 @@
         <p>Region</p>
       </div>
       <div class="col-sm-10">
-        <p>{{ site.country_area.location.region_name }}</p>
+        <p>{{ site.region_names }}</p>
       </div>
     </div>
   {% endif %}
 
-{% if site.location.sub_region_names %}
+{% if site.sub_region_names %}
     <div class="row">
       <div class="col-sm-2">
         <p>Sub-Region</p>
       </div>
       <div class="col-sm-10">
-        <p>{{ site.location.sub_region_names }}</p>
+        <p>{{ site.sub_region_names }}</p>
       </div>
     </div>
   {% endif %}
 
 
-{% if site.location.intermediate_region_names %}
+{% if site.intermediate_region_names %}
     <div class="row">
       <div class="col-sm-2">
         <p>Intermediate Region</p>
       </div>
       <div class="col-sm-10">
-        <p>{{ site.location.intermediate_region_names }}</p>
+        <p>{{ site.intermediate_region_names }}</p>
       </div>
     </div>
   {% endif %}

@@ -178,6 +178,7 @@ class HeritageSite(models.Model):
             if name_and_code not in names:
                 names.append(name_and_code)
         return ', '.join(names)
+
     @property
     def region_names(self):
         """
@@ -191,19 +192,20 @@ class HeritageSite(models.Model):
 
         # Add code that uses self to retrieve a QuerySet composed of regions, then loops over it
         # building a list of region names, before returning a comma-delimited string of names.
-        regions = self.country_area.select_related('location__region').order_by('location__region__region_name')
+        countries = self.country_area.select_related('location').order_by('location__region__region_name')
 
         names = []
-        for region in regions:
-            name = region.region_name
-            if name is None:
+        for country in countries:
+            region = country.location.region
+            if region is None:
                 continue
-
-            name_printing = ''.join([name])
-            if name_printing not in names:
-                names.append(name_printing)
+            name = region.region_name
+            if name not in names:
+                names.append(name)
 
         return ', '.join(names)
+
+        # need a line here, but what?
 
     @property
     def sub_region_names(self):
@@ -220,17 +222,16 @@ class HeritageSite(models.Model):
         # sub region names, before returning a comma-delimited string of names using the string
         # join method.
 
-        sub_regions = self.country_area__location__sub_region.select_related('sub_region').order_by('sub_region_name')
+        countries = self.country_area.select_related('location').order_by('location__sub_region__sub_region_name')
 
         names = []
-        for sub_region in sub_regions:
-            name = sub_region.sub_region_name
-            if name is None:
+        for country in countries:
+            sub_region = country.location.sub_region
+            if sub_region is None:
                 continue
-
-            name_printing = ''.join([name])
-            if name_printing not in names:
-                names.append(name_printing)
+            name = sub_region.sub_region_name
+            if name not in names:
+                names.append(name)
 
         return ', '.join(names)
 
@@ -248,17 +249,16 @@ class HeritageSite(models.Model):
         # Add code that uses self to retrieve a QuerySet, then loops over it building a list of
         # intermediate region names, before returning a comma-delimited string of names using the
         # string join method.
-        intermediate_regions = self.country_area__location__intermediate_region.select_related('intermediate_region').order_by('intermediate_region_name')
+        countries = self.country_area.select_related('location').order_by('location__intermediate_region__intermediate_region_name')
         
         names = []
-        for intermediate_region in intermediate_regions:
+        for country in countries:
+            intermediate_region = country.location.intermediate_region
+            if intermediate_region is None:
+                continue    
             name = intermediate_region.intermediate_region_name
-            if name is None:
-                continue
-
-            name_printing = ''.join([name])
-            if name_printing not in names:
-                names.append(name_printing)
+            if name not in names:
+                names.append(name)
 
         return ', '.join(names)
 

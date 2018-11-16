@@ -15,7 +15,7 @@
         </form>
       </div>
     </div>
-    <div class="col-sm-9">
+    <div class="col-sm-6">
         &nbsp;<a class="btn btn-outline-primary" href="{% url 'site_filter' %}">New Search</a>
       {% for site in object_list %}
         <h4> <a href="{% url 'site_detail' site.pk %}">{{ site.site_name | safe }}</a> </h4>
