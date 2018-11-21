@@ -1,4 +1,5 @@
-"""mysite URL Configuration
+"""mysite URL Configuration 
+# THIS IS PROJECT LEVEL
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.1/topics/http/urls/
@@ -31,6 +32,10 @@ urlpatterns = [
     url(r'^auth/', include('social_django.urls', namespace='social')),
     url(r'^login/', LoginView.as_view(), name='login'),
     url(r'^logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    url(r'^heritagesites/api/rest-auth', include('rest_auth.urls')),
+    url(r'^heritagesites/api/rest-auth/registration/' , include('rest_auth.registration.urls')),
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^heritagesites/api/', include('api.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
